@@ -1,0 +1,6 @@
+D:\Repos\Projects\BookManager\BookManager.Models\bin\Debug\BookManager.Models.dll
+D:\Repos\Projects\BookManager\BookManager.Models\bin\Debug\BookManager.Models.pdb
+D:\Repos\Projects\BookManager\BookManager.Models\obj\Debug\BookManager.Models.csprojAssemblyReference.cache
+D:\Repos\Projects\BookManager\BookManager.Models\obj\Debug\BookManager.Models.csproj.CoreCompileInputs.cache
+D:\Repos\Projects\BookManager\BookManager.Models\obj\Debug\BookManager.Models.dll
+D:\Repos\Projects\BookManager\BookManager.Models\obj\Debug\BookManager.Models.pdb
