@@ -71,13 +71,13 @@ namespace BookManager.Data
         }
         public bool CreateBookSuccess()
         {
-            return createSuccess;   
+            return createSuccess;
         }
         public Book[] BooksInRepository()
         {
-            return _books; 
+            return _books;
         }
-        public void EditBook(int editBookID,string createBookTitle, int createBookQuantity, decimal createBookPrice)
+        public void EditBook(int editBookID, string createBookTitle, int createBookQuantity, decimal createBookPrice)
         {
             Book newBook = new Book();
             newBook.BookTitle = createBookTitle;
@@ -94,11 +94,15 @@ namespace BookManager.Data
             _books[_currentIndex] = EditBook;
             createSuccess = true;
         }
+
         public void RemoveBook(int removeBookID)
         {
-            
-
-
+            _books[removeBookID] = null;
         }
-    }
+       
 }
+
+
+
+}
+

@@ -7,3 +7,12 @@ D:\Repos\Projects\BookManager\BookManager.Data\obj\Debug\BookManager.Data.csproj
 D:\Repos\Projects\BookManager\BookManager.Data\obj\Debug\BookManager.Data.csproj.CopyComplete
 D:\Repos\Projects\BookManager\BookManager.Data\obj\Debug\BookManager.Data.dll
 D:\Repos\Projects\BookManager\BookManager.Data\obj\Debug\BookManager.Data.pdb
+D:\Repos\BookManager_v1\BookManager\BookManager.Data\bin\Debug\BookManager.Data.dll
+D:\Repos\BookManager_v1\BookManager\BookManager.Data\bin\Debug\BookManager.Data.pdb
+D:\Repos\BookManager_v1\BookManager\BookManager.Data\bin\Debug\BookManager.Models.dll
+D:\Repos\BookManager_v1\BookManager\BookManager.Data\bin\Debug\BookManager.Models.pdb
+D:\Repos\BookManager_v1\BookManager\BookManager.Data\obj\Debug\BookManager.Data.csprojAssemblyReference.cache
+D:\Repos\BookManager_v1\BookManager\BookManager.Data\obj\Debug\BookManager.Data.csproj.CoreCompileInputs.cache
+D:\Repos\BookManager_v1\BookManager\BookManager.Data\obj\Debug\BookManager.Data.csproj.CopyComplete
+D:\Repos\BookManager_v1\BookManager\BookManager.Data\obj\Debug\BookManager.Data.dll
+D:\Repos\BookManager_v1\BookManager\BookManager.Data\obj\Debug\BookManager.Data.pdb

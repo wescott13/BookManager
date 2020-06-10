@@ -14,7 +14,6 @@ namespace BookManager.View
 {
     public class BookView
     {
-
         public string mainMenu()
         {
             Console.Clear();
@@ -39,13 +38,10 @@ namespace BookManager.View
 
             return userinput;
         }
-
     }
     public class CreateView
     {
         bool isTitleValid;
-        bool isQuantityValid;
-        
         string createBookTitle;
         int createBookQuantity;
         decimal createBookPrice;
@@ -84,7 +80,6 @@ namespace BookManager.View
                 isTitleValid = true;
             }
         }
-        
         public string createNewBookTitle()
         {
             return createBookTitle;
@@ -104,15 +99,15 @@ namespace BookManager.View
             {
                 Console.WriteLine("Please try again.");
                 Console.WriteLine("");
-                
+
                 checkNewBookQuantity();
             }
             else
             {
                 int.TryParse(incomingBookQuantity, out createBookQuantity);
             }
-            if (createBookQuantity <=0)
-            { 
+            if (createBookQuantity <= 0)
+            {
                 Console.WriteLine("Please try again.");
                 Console.WriteLine("");
 
@@ -162,8 +157,6 @@ namespace BookManager.View
                 createNewBookPrice();
             }
         }
-
-
         public decimal createNewBookPrice()
         {
             return createBookPrice;
@@ -175,7 +168,6 @@ namespace BookManager.View
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
-
     }
     public class DisplayView
     {
@@ -185,18 +177,30 @@ namespace BookManager.View
             Console.WriteLine("Books within the Repository:  ");
             Console.WriteLine("------------------");
         }
-        public void displaybooks(int bookID, string bookTitle)
+        public void displaybooks( Book[] _books)
         {
-            Console.WriteLine("Book ID:  " + bookID + "  Book Title:  " + bookTitle);
+            string bookTitle;
+            int bookID;
+
+            for (int i = 0; i < _books.Length; i++)
+            {
+                Book returnBook;
+                returnBook = _books[i];
+                if (returnBook != null)
+                {
+                    bookTitle = returnBook.BookTitle;
+                    bookID = returnBook.BookID;
+                    Console.WriteLine("Book ID:  " + bookID + "  Book Title:  " + bookTitle);
+                }
+            }
         }
         public void toMainMenu()
-        {
+        { 
             Console.WriteLine("Press Enter for Main Menu");
             Console.ReadKey();
         }
     }
     public class SearchView
-
     {
         int searchBookID;
         public void checkSearch()
@@ -207,10 +211,8 @@ namespace BookManager.View
 
             isSearchValid(incomingSearch);
         }
-
         private void isSearchValid(string incomingSearch)
         {
-            
             if (string.IsNullOrEmpty(incomingSearch))
             {
                 Console.WriteLine("Please try again.");
@@ -234,13 +236,10 @@ namespace BookManager.View
                 searchBook();
             }
         }
-
         public int searchBook()
         {
-            
             return searchBookID;
         }
-
         public void searchBooksReturn(int bookID, string bookTitle, decimal bookPrice, int bookQuantity)
         {
             Console.WriteLine("Book ID:  " + bookID);
@@ -264,11 +263,9 @@ namespace BookManager.View
             string incomingEdit = Console.ReadLine();
 
             isEditValid(incomingEdit);
-
         }
         private void isEditValid(string incomingEdit)
         {
-
             if (string.IsNullOrEmpty(incomingEdit))
             {
                 Console.WriteLine("Please try again.");
@@ -308,11 +305,9 @@ namespace BookManager.View
             string incomingRemove = Console.ReadLine();
 
             isRemoveValid(incomingRemove);
-
         }
         private void isRemoveValid(string incomingRemove)
         {
-
             if (string.IsNullOrEmpty(incomingRemove))
             {
                 Console.WriteLine("Please try again.");
@@ -336,11 +331,9 @@ namespace BookManager.View
                 removebook();
             }
         }
-
         public int removebook()
         {
             return removeBookID;
         }
     }
-
 }

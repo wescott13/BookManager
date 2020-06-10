@@ -19,12 +19,29 @@ namespace BookManager.Controllers
         private EditView editView;
         private RemoveView removeView;
         private BookRepository bookRepository;
-        
+
+        int x = 6;  //BookRepositoryLimit
+
+        int bookID;
+        string bookTitle;
+        int bookQuantity;
+        decimal bookPrice;
+
 
         public void Start()
         {
+            bookRepositoryLimit();
+            bookRepository = new BookRepository(x);
+            MainMenu();
+        }
+        public int bookRepositoryLimit()
+        {
+            int bookRepositoryLimit = x;
+            return bookRepositoryLimit;
+        }
+        public void MainMenu()
+        {
             bookView = new BookView();
-            bookRepository = new BookRepository(10);
 
             string userinput = bookView.mainMenu();
 
@@ -45,6 +62,9 @@ namespace BookManager.Controllers
                 case "5":
                     removeBook();
                     break;
+                default:
+                    MainMenu();
+                    break;
 
                 case "Q":
                     return;
@@ -53,53 +73,146 @@ namespace BookManager.Controllers
         }
         public void createBook()
         {
+
+            createView = new CreateView();
+            createView.createNewBookInto();
+            string createBookTitle = createView.createNewBookTitle();
+            int createBookQuantity = createView.createNewBookQuantity();
+            decimal createBookPrice = createView.createNewBookPrice();
+
+            bookRepository.CreateBook(createBookTitle, createBookQuantity, createBookPrice);
+            validation();
+
+            MainMenu();
+        }
+        public void validation()
+        {
+            bool createBookSuccess = bookRepository.CreateBookSuccess();
+            createView.createBookSuccess(createBookSuccess);
+        }
+
+        public void displayBooks()
+        {
+            displayView = new DisplayView();
+            displayView.displayViewMenu();
+
+            Book[] _books;
+            _books = bookRepository.BooksInRepository();
+
+            for (int i = 0; i < _books.Length; i++)
+            {
+                Book returnBook;
+                returnBook = _books[i];
+                if (returnBook != null)
+                {
+                    bookTitle = returnBook.BookTitle;
+                    bookID = returnBook.BookID;
+
+                    displayView.displaybooks(bookID, bookTitle);
+                }
+            }
+            displayBooksEnd();
+        }
+        
+        public void displayBooksEnd()
+        {
+            displayView.toMainMenu();
+            MainMenu();
+        }
+        public void searchBooks()
+        {
+            searchView = new SearchView();
+            int searchBookID = searchView.searchBook();
+
+            Book[] _books;
+            _books = bookRepository.BooksInRepository();
+
+            for (int i = 0; i < _books.Length; i++)
+            {
+                Book returnBook;
+                returnBook = _books[i];
+                if (returnBook != null)
+                    while (searchBookID == returnBook.BookID)
+                    {
+                        bookID = returnBook.BookID;
+                        bookTitle = returnBook.BookTitle;
+                        bookQuantity = returnBook.BookQuantity;
+                        bookPrice = returnBook.BookPrice;
+
+                        searchView.searchBooksReturn(bookID, bookTitle, bookPrice, bookQuantity);
+                        break;
+                    }
+            }
             
-            //TODO create validation when created
+            MainMenu();
+        }
+        public void editBook()
+        {
+            displayView = new DisplayView();
             
+            Book[] _books;
+            _books = bookRepository.BooksInRepository();
+
+            for (int i = 0; i < _books.Length; i++)
+            {
+                Book returnBook;
+                returnBook = _books[i];
+                if (returnBook != null)
+                {
+                    bookTitle = returnBook.BookTitle;
+                    bookID = returnBook.BookID;
+
+                    displayView.displaybooks(bookID, bookTitle);
+                }
+            }
+            
+            editView = new EditView();
+            int editBookID = editView.editbook();
             createView = new CreateView();
             string createBookTitle = createView.createNewBookTitle();
             int createBookQuantity = createView.createNewBookQuantity();
             decimal createBookPrice = createView.createNewBookPrice();
 
-            bookRepository.CreateBook(createBookTitle,createBookQuantity,createBookPrice);
-
-        }
-        public void displayBooks()
-        {
-            //TODO retrieve bookrepository element book title
-            //TODO display result
-            displayView = new DisplayView();
-            string bookList = displayView.displaybooks();
-
-            Console.ReadLine();
-
-        }
-        public void searchBooks()
-        {
-            //TODO make console for input BookID
-            //TODO search bookID match from that element of bookrepository
-            //TODO display search result
-            searchView = new SearchView();
-            int searchBookID = searchView.searchbook();
-
-        }
-        public void editBook()
-        {
-            //TODO call displayBooks
-            //TODO make console which book to edit by BookID, user input
-            // TODO create validation when edited
-            editView = new EditView();
-            int editBookID = editView.editbook();
-
+            bookRepository.EditBook(editBookID, createBookTitle, createBookQuantity, createBookPrice);
+            validation();
+            displayBooks();
         }
         public void removeBook()
         {
-            //TODO call displayBooks
-            //TODO make console which book to remove by BookID, user input  
+            displayView = new DisplayView();
+
+            Book[] _books;
+            _books = bookRepository.BooksInRepository();
+
+            for (int i = 0; i < _books.Length; i++)
+            {
+                Book returnBook;
+                returnBook = _books[i];
+                if (returnBook != null)
+                {
+                    bookTitle = returnBook.BookTitle;
+                    bookID = returnBook.BookID;
+
+                    displayView.displaybooks(bookID, bookTitle);
+                }
+            }
 
             removeView = new RemoveView();
             int removeBookID = removeView.removebook();
+            bookRepository.RemoveBook(removeBookID);
+            int y = 0;
+            int pos;
+            pos = removeBookID;
+
+                for (y = pos; y < (x-1); y++)
+                {
+                    _books[y] = _books[y + 1];
+                }
+            
+            displayBooks();
+
         }
+
         
-}
+    }
 }

@@ -76,6 +76,11 @@ namespace BookManager.Controllers
 
             createView = new CreateView();
             createView.createNewBookInto();
+            createView.checkNewBookTitle();
+            createView.checkNewBookQuantity();
+            createView.checkNewBookPrice();
+           
+            
             string createBookTitle = createView.createNewBookTitle();
             int createBookQuantity = createView.createNewBookQuantity();
             decimal createBookPrice = createView.createNewBookPrice();
@@ -122,6 +127,8 @@ namespace BookManager.Controllers
         public void searchBooks()
         {
             searchView = new SearchView();
+            searchView.checkSearch();
+
             int searchBookID = searchView.searchBook();
 
             Book[] _books;
@@ -167,8 +174,14 @@ namespace BookManager.Controllers
             }
             
             editView = new EditView();
+            editView.checkEdit();
+
             int editBookID = editView.editbook();
             createView = new CreateView();
+            createView.checkNewBookTitle();
+            createView.checkNewBookQuantity();
+            createView.checkNewBookPrice();
+
             string createBookTitle = createView.createNewBookTitle();
             int createBookQuantity = createView.createNewBookQuantity();
             decimal createBookPrice = createView.createNewBookPrice();
@@ -198,21 +211,12 @@ namespace BookManager.Controllers
             }
 
             removeView = new RemoveView();
+            removeView.checkRemove();
             int removeBookID = removeView.removebook();
+
             bookRepository.RemoveBook(removeBookID);
-            int y = 0;
-            int pos;
-            pos = removeBookID;
 
-                for (y = pos; y < (x-1); y++)
-                {
-                    _books[y] = _books[y + 1];
-                }
-            
             displayBooks();
-
-        }
-
-        
+        } 
     }
 }

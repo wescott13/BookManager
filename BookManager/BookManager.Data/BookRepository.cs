@@ -13,6 +13,10 @@ namespace BookManager.Data
         int _currentIndex;
         public bool createSuccess;
         int _bookRepositoryLimit;
+        public int bookID;
+        public string bookTitle;
+        public int bookQuantity;
+        public decimal bookPrice;
 
         public void CreateBook(string createBookTitle, int createBookQuantity, decimal createBookPrice)
         {
@@ -94,15 +98,16 @@ namespace BookManager.Data
             _books[_currentIndex] = EditBook;
             createSuccess = true;
         }
-
+        public Book SearchBook(int searchBookID)
+        {
+            Book returnBook;
+            returnBook = _books[searchBookID];
+            return returnBook;
+        }
         public void RemoveBook(int removeBookID)
         {
             _books[removeBookID] = null;
         }
-       
-}
-
-
-
+    }
 }
 
